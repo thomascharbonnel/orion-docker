@@ -1,0 +1,31 @@
+pipeline {
+    agent {
+        dockerfile {
+            dir '.ci'
+            args '--add-host server:127.0.0.1 --add-host web:127.0.0.1'
+        }
+    }
+
+    stages {
+        stage('Test') {
+            parallel {
+                stage('Lint') {
+                    steps {
+                        sh 'yamllint docker-compose.yml'
+                    }
+                }
+                stage('Syntax') {
+                    steps {
+                        sh 'sudo nginx -t -c $(pwd)/http/nginx.conf'
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}
