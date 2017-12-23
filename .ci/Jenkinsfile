@@ -2,12 +2,27 @@ pipeline {
     agent {
         dockerfile {
             dir '.ci'
-            args '--add-host server:127.0.0.1 --add-host web:127.0.0.1'
+            args '--add-host server:127.0.0.1 --add-host web:127.0.0.1 --privileged=true'
         }
     }
 
     stages {
-        stage('Test') {
+        stage('Install') {
+            parallel {
+                stage('Docker') {
+                    steps {
+                        sh 'sudo service docker start'
+                        sh 'sudo docker-compose pull'
+                    }
+                }
+                stage('Environment') {
+                    steps {
+                        sh 'cp .env.example .env'
+                    }
+                }
+            }
+        }
+        stage('Verify') {
             parallel {
                 stage('Lint') {
                     steps {
@@ -17,6 +32,20 @@ pipeline {
                 stage('Syntax') {
                     steps {
                         sh 'sudo nginx -t -c $(pwd)/http/nginx.conf'
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            parallel {
+                stage('Server') {
+                    steps {
+                        sh 'sudo docker-compose build server'
+                    }
+                }
+                stage('Web') {
+                    steps {
+                        sh 'sudo docker-compose build web'
                     }
                 }
             }
