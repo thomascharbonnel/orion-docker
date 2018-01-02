@@ -1,4 +1,4 @@
-FROM docker.internal.kevinlin.info/infra/ci-base:0.0.5
+FROM docker.internal.kevinlin.info/infra/ci-base:0.1.0
 
 # Install Docker and lint/verification dependencies
 RUN apt-get install -y apt-transport-https ca-certificates software-properties-common
