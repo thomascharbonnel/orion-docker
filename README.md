@@ -32,8 +32,6 @@ EOF
 Then, some Docker magic:
 
 ```bash
-$ docker-compose pull
-$ docker-compose build
 $ docker-compose up -d
 ```
 
