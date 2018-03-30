@@ -28,7 +28,7 @@ services:
     build:
       context: orion-web
       args:
-        sha: f83c614aa5c2e4b31233c8401304f750833f366d
+        sha: ac4cb0c41a6a20a872dd7e07f664d9e7ead82b5d
         mapbox_api_token: ${MAPBOX_API_TOKEN}
     depends_on:
       - server
