@@ -8,7 +8,7 @@ Please note that Orion's Docker deployment support is considered **experimental*
 
 ## Prerequisites
 
-1. You need a [MapBox API token](https://www.mapbox.com/help/how-access-tokens-work/) for your deployment. It is used to render the interactive map in the web interface. They are free.
+1. You need a [Mapbox API token](https://www.mapbox.com/help/how-access-tokens-work/) for your deployment. It is used to render the interactive map in the web interface. They are free.
 2. You need [`docker-compose`](https://docs.docker.com/compose/install/).
 
 ## Deployment
