@@ -14,7 +14,7 @@ services:
     build:
       context: orion-server
       args:
-        sha: 9c1430d6cd77e9ac16667d5b4c3e4a09f49ff5b7
+        sha: fedb85c8b2980bfc4dea7bf93ca17e059f63b1c1
         database_host: db
         database_port: 3306
         database_name: orion
@@ -28,7 +28,7 @@ services:
     build:
       context: orion-web
       args:
-        sha: ac4cb0c41a6a20a872dd7e07f664d9e7ead82b5d
+        sha: 8c18dce19a2199c4c53e1145881d362a05018cd5
         mapbox_api_token: ${MAPBOX_API_TOKEN}
     depends_on:
       - server

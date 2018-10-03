@@ -1,13 +1,13 @@
-FROM node:8.9.3
+FROM node:8.9.3-alpine
 MAINTAINER Kevin Lin <developer@kevinlin.info>
 
 ARG sha
 ARG mapbox_api_token
 
-RUN apt-get update
-RUN apt-get install -y wget unzip
+RUN apk update
+RUN apk add curl unzip
 
-RUN wget -O orion-web.zip https://github.com/LINKIWI/orion-web/archive/$sha.zip
+RUN curl -L -o orion-web.zip https://github.com/LINKIWI/orion-web/archive/$sha.zip
 RUN unzip orion-web.zip
 WORKDIR "orion-web-$sha"
 
